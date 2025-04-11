@@ -26,3 +26,4 @@ user:
     message: "Password must be 8-12 characters long, contain at least one uppercase letter and one digit"
 jwt:
   secret: secretKey1234567890
+
