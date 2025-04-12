@@ -1,12 +1,11 @@
 spring:
+  r2dbc:
+    url: r2dbc:h2:mem:///testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
   h2:
     console:
       enabled: true
-  datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
   main:
     allow-bean-definition-overriding: true
 
@@ -21,9 +20,10 @@ user:
   email:
     pattern: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
     message: "Invalid email format"
+    exist:
+      message: "Email already exists"
   password:
     pattern: ^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,12}$
     message: "Password must be 8-12 characters long, contain at least one uppercase letter and one digit"
-jwt:
-  secret: secretKey1234567890
+
 

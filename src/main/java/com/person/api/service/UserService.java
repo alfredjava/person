@@ -14,9 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 import java.util.regex.Pattern;
 
 @Service
@@ -42,21 +41,20 @@ public class UserService {
         return userRepository.existsByEmail(request.getEmail())
                 .flatMap(exists -> {
                     if (exists) {
-                        return Mono.error(new ResponseStatusException(HttpStatus.BAD_REQUEST, "El correo ya registrado"));
+                        return Mono.error(new ResponseStatusException(HttpStatus.CONFLICT, env.getProperty("user.email.exist.message")));
                     }
 
-                    UUID id = UUID.randomUUID();
                     String token = jwtUtil.generateToken(request.getEmail());
-                    Instant now = Instant.now();
+                    LocalDateTime now = java.time.LocalDateTime.now();
 
                     User user = User.builder()
-                            .id(id)
+                            //.id(id)
                             .name(request.getName())
                             .email(request.getEmail())
                             .password(request.getPassword())
-                            .created(java.time.LocalDateTime.now())
-                            .modified(java.time.LocalDateTime.now())
-                            .lastLogin(java.time.LocalDateTime.now())
+                            .created(now)
+                            .modified(now)
+                            .lastLogin(now)
                             .token(token)
                             .isActive(true)
                             .build();
@@ -65,10 +63,10 @@ public class UserService {
                             .flatMap(savedUser -> {
                                 List<Phone> phones = request.getPhones().stream().map(p ->
                                         Phone.builder()
-                                                .id(UUID.randomUUID())
+                                                //.id(UUID.randomUUID())
                                                 .number(p.getNumber())
-                                                .cityCode(p.getCitycode())
-                                                .contryCode(p.getContrycode())
+                                                .cityCode(p.getCityCode())
+                                                .countryCode(p.getCountryCode())
                                                 .userId(savedUser.getId())
                                                 .build()
                                 ).toList();
