@@ -10,6 +10,7 @@ import com.person.api.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Mono;
@@ -25,6 +26,7 @@ public class UserService {
     private final PhoneRepository phoneRepository;
     private final JwtUtil jwtUtil;
     private final Environment env;
+    private final PasswordEncoder passwordEncoder;
 
     public Mono<UserResponse> register(UserRequest request) {
         Pattern emailPattern = Pattern.compile(env.getProperty("user.email.pattern"));
@@ -51,7 +53,7 @@ public class UserService {
                             //.id(id)
                             .name(request.getName())
                             .email(request.getEmail())
-                            .password(request.getPassword())
+                            .password(passwordEncoder.encode(request.getPassword()))
                             .created(now)
                             .modified(now)
                             .lastLogin(now)
@@ -81,6 +83,18 @@ public class UserService {
                                     .token(saved.getToken())
                                     .isActive(saved.isActive())
                                     .build());
+                });
+    }
+
+    public Mono<String> authenticate(String email, String rawPassword) {
+        return userRepository.findByEmail(email)
+                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Correo no registrado")))
+                .flatMap(user -> {
+                    if (passwordEncoder.matches(rawPassword, user.getPassword())) {
+                        return Mono.just(jwtUtil.generateToken(user.getEmail()));
+                    } else {
+                        return Mono.error(new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Contraseña incorrecta"));
+                    }
                 });
     }
 }

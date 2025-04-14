@@ -14,7 +14,8 @@ public class DataSourceConfig {
 
         ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer();
         initializer.setConnectionFactory(connectionFactory);
-        initializer.setDatabasePopulator(new ResourceDatabasePopulator(new ClassPathResource("ddl.sql")));
+        initializer.setDatabasePopulator(new ResourceDatabasePopulator(
+                new ClassPathResource("ddl.sql")));
 
         return initializer;
     }

@@ -8,7 +8,7 @@ CREATE TABLE users(
                       created TIMESTAMP,
                       modified TIMESTAMP,
                       last_login TIMESTAMP,
-                      token VARCHAR(200) NOT NULL
+                      token VARCHAR(200)  NULL
 );
 
 DROP TABLE IF EXISTS phones;
@@ -17,7 +17,7 @@ CREATE TABLE phones(
                       number VARCHAR(16) not null,
                       city_code VARCHAR(4) NOT NULL,
                       country_code VARCHAR(6) NOT NULL,
-                      user_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE
+                      user_id uuid REFERENCES users(id) ON DELETE CASCADE
 );
 
 
