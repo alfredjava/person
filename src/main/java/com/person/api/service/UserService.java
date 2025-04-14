@@ -46,7 +46,6 @@ public class UserService {
                         return Mono.error(new ResponseStatusException(HttpStatus.CONFLICT, env.getProperty("user.email.exist.message")));
                     }
 
-                    String token = jwtUtil.generateToken(request.getEmail());
                     LocalDateTime now = java.time.LocalDateTime.now();
 
                     User user = User.builder()
@@ -57,7 +56,7 @@ public class UserService {
                             .created(now)
                             .modified(now)
                             .lastLogin(now)
-                            .token(token)
+                            .token(jwtUtil.generateToken(request.getEmail()))
                             .isActive(true)
                             .build();
 

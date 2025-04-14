@@ -31,4 +31,8 @@ user:
     pattern: ^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,12}$
     message: "Password must be 8-12 characters long, contain at least one uppercase letter and one digit"
 
+jwt:
+    secret: jsegUqko0J2KBJqV3x4ynRiMSWP4y+s+d6SFjPtPnQsYZFCERyPvGnv8R5z4d2PZSgpfpZD+TUXek/4JpafCa8GaI19wCMCKn4DJD0YAIrQ0SobPnUlHrMZDHc6ekS+sQixMI+hPW65DI5d6kk2d/Ja1rKgXvO9THxqgPLAG2+uwGQ30GQcTQO9GMkstx5jWtgv39ZS3dGjAJWGODoSgenxg/pXAp5N1w1sL4OLv6HuHtcZ++MzP24AUTbmH0UNFyBxVMnc4x4fCjVq7nXmjLXmU2TUllbP65f7QjrpqjtnxgUig4O6k8lG2Ee6KjChmxazK3xUENsLrsfCgIYlrh/7uS2upqer16tJtPihdXl2v6D1ACgA1usyWxQx0PPZ/RaKd1vWcZ8vuB04tAY0V6MbhtM7le3oEHFdlyrDHkPQb2+g3VODRomAzRoh+uKq946mWAFq4NITwEmzVifadzWl2cChIWPyQLdTjl1jVsYutKD2hnFqKpx67gchjadLEbKATOUtgPZe0BNZ1ExQKGkqQ1WHVvS45aJU59jivApus5UB0NRJ3vMUhFhBOs0A3HMl4jJAjzYtFmFLUvoQcdZtXcLtolMHeJllJWedenPcK/BB3nXC++vIf8FSOXLRWm5V9ykmdCyarglnKMNvCiYEstceGfntVT+RIHG0gUB0=
+    expiration: 3600
+
 

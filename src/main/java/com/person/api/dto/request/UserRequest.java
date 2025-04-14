@@ -8,14 +8,15 @@ import java.util.List;
 
 @Data
 public class UserRequest {
-    @NotBlank
+
+    @NotBlank(message = "El campo 'name' no puede estar en blanco")
     private String name;
 
-    @NotBlank
+    @NotBlank(message = "El campo 'email' no puede estar en blanco")
     @Email
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "El campo 'password' no puede estar en blanco")
     private String password;
 
     private List<PhoneRequest> phones;
