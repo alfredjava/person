@@ -2,8 +2,8 @@ package com.person.api.service;
 
 import com.person.api.dto.request.UserRequest;
 import com.person.api.dto.response.UserResponse;
-import com.person.api.entity.Phone;
-import com.person.api.entity.User;
+import com.person.api.model.Phone;
+import com.person.api.model.User;
 import com.person.api.repository.PhoneRepository;
 import com.person.api.repository.UserRepository;
 import com.person.api.util.JwtUtil;

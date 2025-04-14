@@ -1,7 +1,5 @@
 package com.person.api.util;
 
-import com.person.api.dto.request.UserRequest;
-import com.person.api.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

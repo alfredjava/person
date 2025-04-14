@@ -1,6 +1,6 @@
 package com.person.api.repository;
 
-import com.person.api.entity.User;
+import com.person.api.model.User;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Mono;
 

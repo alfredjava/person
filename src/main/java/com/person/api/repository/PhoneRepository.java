@@ -1,6 +1,6 @@
 package com.person.api.repository;
 
-import com.person.api.entity.Phone;
+import com.person.api.model.Phone;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Flux;
 

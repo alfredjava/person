@@ -1,4 +1,4 @@
-package com.person.api.entity;
+package com.person.api.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
